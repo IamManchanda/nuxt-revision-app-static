@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import AppPostPreview from "~/components/app-post-preview.vue";
+import AppPostPreview from "~/components/posts/app-post-preview.vue";
 
 export default {
   components: {

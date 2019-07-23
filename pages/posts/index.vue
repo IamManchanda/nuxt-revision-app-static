@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import AppPostExcerpt from "~/components/app-post-excerpt.vue";
+import AppPostExcerpt from "~/components/posts/app-post-excerpt.vue";
 
 export default {
   components: {

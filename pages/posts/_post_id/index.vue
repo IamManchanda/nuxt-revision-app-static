@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import AppPostFull from "~/components/app-post-full.vue";
+import AppPostFull from "~/components/posts/app-post-full.vue";
 
 export default {
   components: {
