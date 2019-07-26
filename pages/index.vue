@@ -28,11 +28,13 @@ export default {
   components: {
     AppPostPreview
   },
-  data() {
-    return {
-      single_post_dummy_data
-    };
-  }
+  asyncData(context, done) {
+    setTimeout(() => {
+      done(null, {
+        single_post_dummy_data,
+      });
+    }, 150);
+  },
 };
 </script>
 

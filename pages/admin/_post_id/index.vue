@@ -10,10 +10,12 @@ import AppAdminPostForm from "~/components/admin/app-admin-post-form.vue";
 import { single_post_dummy_data } from "~/fixtures/single_post.js";
 
 export default {
-  data() {
-    return {
-      single_post_dummy_data
-    };
+  asyncData(context, done) {
+    setTimeout(() => {
+      done(null, {
+        single_post_dummy_data,
+      });
+    }, 150);
   },
   components: {
     AppAdminPostForm

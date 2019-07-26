@@ -23,10 +23,12 @@ export default {
   components: {
     AppPostContent
   },
-  data() {
-    return {
-      single_post_dummy_data
-    };
+  asyncData(context, done) {
+    setTimeout(() => {
+      done(null, {
+        single_post_dummy_data,
+      });
+    }, 150);
   },
   validate(route) {
     return /^\d+$/.test(route.params.post_id);
