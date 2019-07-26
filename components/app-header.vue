@@ -5,13 +5,13 @@
         <a>Home</a>
       </nuxt-link>
       <nuxt-link :to="{ name: 'posts' }" tag="li" active-class="is-active">
-        <a>Posts</a>
-      </nuxt-link>
-      <nuxt-link :to="{ name: 'about' }" tag="li" active-class="is-active">
-        <a>About</a>
+        <a>All Posts</a>
       </nuxt-link>
       <nuxt-link :to="{ name: 'admin' }" tag="li" active-class="is-active">
         <a>Your Posts</a>
+      </nuxt-link>
+      <nuxt-link :to="{ name: 'about' }" tag="li" active-class="is-active">
+        <a>About</a>
       </nuxt-link>
     </ul>
   </div>
