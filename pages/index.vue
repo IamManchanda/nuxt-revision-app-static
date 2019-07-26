@@ -40,6 +40,11 @@ export default {
         context.error(new Error());
       });
   },
+  /* computed: {
+    all_posts() {
+      return this.$store.getters.all_posts;
+    },
+  }, */
 };
 </script>
 
