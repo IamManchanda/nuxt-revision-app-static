@@ -9,7 +9,7 @@
     <b-field label="Full Content">
       <b-input
         type="textarea"
-        maxlength="5000"
+        maxlength="20000"
         v-model="edited_post.content"
         placeholder="Enter Title"
       />
@@ -17,7 +17,7 @@
     <b-field label="Excerpt Content">
       <b-input
         type="textarea"
-        maxlength="500"
+        maxlength="2000"
         v-model="edited_post.excerpt"
         placeholder="Enter Title"
       />
@@ -25,7 +25,7 @@
     <b-field label="Preview Content">
       <b-input
         type="textarea"
-        maxlength="50"
+        maxlength="200"
         v-model="edited_post.preview"
         placeholder="Enter Title"
       />

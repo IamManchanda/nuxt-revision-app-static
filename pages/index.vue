@@ -7,8 +7,8 @@
         v-for="post_id of 6"
         :key="post_id"
       >
-        <app-post-preview :post_id="post_id" title="Reprehenderit, voluptas?" description>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis excepturi odio. Omnis possimus quis tempora rerum enim error totam.</p>
+        <app-post-preview :post_id="post_id" :title="single_post_dummy_data.title" :author="single_post_dummy_data.author" :is_admin="true">
+          <div v-html="single_post_dummy_data.preview"></div>
         </app-post-preview>
       </div>
     </section>
@@ -17,11 +17,17 @@
 
 <script>
 import AppPostPreview from "~/components/posts/app-post-preview.vue";
+import { single_post_dummy_data } from "~/fixtures/single_post.js";
 
 export default {
   components: {
     AppPostPreview
-  }
+  },
+  data() {
+    return {
+      single_post_dummy_data,
+    };
+  },
 };
 </script>
 

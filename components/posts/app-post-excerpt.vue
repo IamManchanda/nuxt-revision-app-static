@@ -15,6 +15,7 @@
             </figure>
           </div>
           <div class="column is-full-mobile is-half-tablet is-three-quarters-desktop">
+            <p><strong>{{ author }}</strong></p>
             <slot />
             <div class="is-pulled-right">
               <nuxt-link
@@ -45,6 +46,10 @@ export default {
       required: true
     },
     title: {
+      type: String,
+      required: true
+    },
+    author: {
       type: String,
       required: true
     },

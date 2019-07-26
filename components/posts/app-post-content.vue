@@ -11,6 +11,7 @@
             alt="Placeholder image"
           />
         </figure>
+        <p><strong>{{ author }}</strong></p>
         <slot />
       </div>
     </article>
@@ -25,6 +26,10 @@ export default {
       required: true
     },
     title: {
+      type: String,
+      required: true
+    },
+    author: {
       type: String,
       required: true
     },

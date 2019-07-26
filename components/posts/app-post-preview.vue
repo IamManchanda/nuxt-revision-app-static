@@ -7,6 +7,7 @@
       <figure class="image">
         <img :src="`https://source.unsplash.com/collection/${post_id}/750x250`" alt="Placeholder image" />
       </figure>
+      <p><strong>{{ author }}</strong></p>
       <slot />
       <nuxt-link
         type="button"
@@ -25,6 +26,10 @@ export default {
       required: true
     },
     title: {
+      type: String,
+      required: true
+    },
+    author: {
       type: String,
       required: true
     },

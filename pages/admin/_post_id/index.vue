@@ -1,23 +1,18 @@
 <template>
   <div class="box">
     <h1 class="is-size-3">Update Post</h1>
-    <app-post-form :edited_post="edited_post" />
+    <app-post-form :edited_post="single_post_dummy_data" />
   </div>
 </template>
 
 <script>
 import AppPostForm from "~/components/posts/app-post-form.vue";
+import { single_post_dummy_data } from "~/fixtures/single_post.js";
 
 export default {
   data() {
     return {
-      edited_post: {
-        author: "",
-        title: "",
-        content: "",
-        excerpt: "",
-        preview: "",
-      }
+      single_post_dummy_data,
     };
   },
   components: {
