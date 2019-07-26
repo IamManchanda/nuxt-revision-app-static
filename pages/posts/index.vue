@@ -23,12 +23,17 @@ export default {
   components: {
     AppPostExcerpt
   },
-  asyncData(context, done) {
-    setTimeout(() => {
-      done(null, {
-        single_post_dummy_data,
+  asyncData(context) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({ single_post_dummy_data });
+      }, 100);
+    })
+      .then(data => data)
+      .catch(error => {
+        console.error(error);
+        context.error(new Error());
       });
-    }, 150);
   },
 };
 </script>
