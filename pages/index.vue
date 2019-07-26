@@ -7,7 +7,12 @@
         v-for="post_id of 6"
         :key="post_id"
       >
-        <app-post-preview :post_id="post_id" :title="single_post_dummy_data.title" :author="single_post_dummy_data.author" :is_admin="true">
+        <app-post-preview
+          :post_id="post_id"
+          :title="single_post_dummy_data.title"
+          :author="single_post_dummy_data.author"
+          :is_admin="true"
+        >
           <div v-html="single_post_dummy_data.preview"></div>
         </app-post-preview>
       </div>
@@ -25,9 +30,9 @@ export default {
   },
   data() {
     return {
-      single_post_dummy_data,
+      single_post_dummy_data
     };
-  },
+  }
 };
 </script>
 

@@ -43,7 +43,7 @@ export default {
     edited_post: {
       type: Object,
       required: true
-    },
+    }
   },
   methods: {
     handleSavePost() {

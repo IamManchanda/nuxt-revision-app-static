@@ -3,7 +3,11 @@
     <h1 class="is-size-3">Post #{{ $route.params.post_id }}</h1>
     <section class="columns is-multiline single-post-container">
       <div class="column is-full">
-        <app-post-content :post_id="$route.params.post_id" :title="single_post_dummy_data.title" :author="single_post_dummy_data.author">
+        <app-post-content
+          :post_id="$route.params.post_id"
+          :title="single_post_dummy_data.title"
+          :author="single_post_dummy_data.author"
+        >
           <div v-html="single_post_dummy_data.content"></div>
         </app-post-content>
       </div>
@@ -21,7 +25,7 @@ export default {
   },
   data() {
     return {
-      single_post_dummy_data,
+      single_post_dummy_data
     };
   },
   validate(route) {

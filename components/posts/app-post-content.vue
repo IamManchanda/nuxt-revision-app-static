@@ -11,7 +11,9 @@
             alt="Placeholder image"
           />
         </figure>
-        <p><strong>{{ author }}</strong></p>
+        <p>
+          <strong>{{ author }}</strong>
+        </p>
         <slot />
       </div>
     </article>
@@ -32,7 +34,7 @@ export default {
     author: {
       type: String,
       required: true
-    },
+    }
   }
 };
 </script>

@@ -12,12 +12,12 @@ import single_post from "~/fixtures/single_post.js";
 export default {
   data() {
     return {
-      single_post,
+      single_post
     };
   },
   components: {
-    AppAdminPostForm,
-  },
+    AppAdminPostForm
+  }
 };
 </script>
 

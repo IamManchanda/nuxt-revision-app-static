@@ -12,15 +12,15 @@ import { single_post_dummy_data } from "~/fixtures/single_post.js";
 export default {
   data() {
     return {
-      single_post_dummy_data,
+      single_post_dummy_data
     };
   },
   components: {
-    AppAdminPostForm,
+    AppAdminPostForm
   },
   validate(route) {
     return /^\d+$/.test(route.params.post_id);
-  },
-}
+  }
+};
 </script>
 

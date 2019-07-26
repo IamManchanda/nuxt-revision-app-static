@@ -3,7 +3,11 @@
     <h1 class="is-size-3">List of all Posts.</h1>
     <section class="columns is-multiline all-posts-container">
       <div class="column is-full" v-for="post_id of 6" :key="post_id">
-        <app-post-excerpt :post_id="post_id" :title="single_post_dummy_data.title" :author="single_post_dummy_data.author">
+        <app-post-excerpt
+          :post_id="post_id"
+          :title="single_post_dummy_data.title"
+          :author="single_post_dummy_data.author"
+        >
           <div v-html="single_post_dummy_data.excerpt"></div>
         </app-post-excerpt>
       </div>
@@ -17,13 +21,13 @@ import { single_post_dummy_data } from "~/fixtures/single_post.js";
 
 export default {
   components: {
-    AppPostExcerpt,
+    AppPostExcerpt
   },
   data() {
     return {
-      single_post_dummy_data,
+      single_post_dummy_data
     };
-  },
+  }
 };
 </script>
 
