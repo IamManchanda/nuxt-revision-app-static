@@ -11,7 +11,7 @@
       <nuxt-link
         type="button"
         class="button is-primary view-post-link"
-        :to="`/posts/${post_id}`"
+        :to="{ name: 'posts-post_id', params: { post_id }}"
       >View Post</nuxt-link>
     </div>
   </article>

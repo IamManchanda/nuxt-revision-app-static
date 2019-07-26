@@ -18,9 +18,16 @@
             <slot />
             <div class="is-pulled-right">
               <nuxt-link
+                v-if="is_admin"
                 type="button"
                 class="button is-primary view-post-link"
-                :to="`/posts/${post_id}`"
+                :to="{ name: 'admin-post_id', params: { post_id }}"
+              >Update Post</nuxt-link>
+              <nuxt-link
+                v-else
+                type="button"
+                class="button is-primary view-post-link"
+                :to="{ name: 'posts-post_id', params: { post_id }}"
               >View Post</nuxt-link>
             </div>
           </div>
@@ -41,6 +48,10 @@ export default {
       type: String,
       required: true
     },
+    is_admin: {
+      type: Boolean,
+      default: false
+    }
   }
 };
 </script>

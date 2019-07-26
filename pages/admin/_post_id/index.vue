@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <h1 class="is-size-3">Create New Post</h1>
+    <h1 class="is-size-3">Update Post</h1>
     <app-post-form :edited_post="edited_post" />
   </div>
 </template>
@@ -23,6 +23,9 @@ export default {
   components: {
     AppPostForm,
   },
-};
+  validate(route) {
+    return /^\d+$/.test(route.params.post_id);
+  },
+}
 </script>
 
