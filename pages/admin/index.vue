@@ -22,12 +22,7 @@
 </template>
 
 <script>
-import AppPost from "~/components/posts/app-post.vue";
-
 export default {
-  components: {
-    AppPost
-  },
   computed: {
     all_posts() {
       return this.$store.getters.all_posts;

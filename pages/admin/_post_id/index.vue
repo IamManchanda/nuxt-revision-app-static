@@ -7,7 +7,6 @@
 
 <script>
 import axios from "axios";
-import AppAdminPostForm from "~/components/admin/app-admin-post-form.vue";
 
 export default {
   asyncData(context) {
@@ -20,9 +19,6 @@ export default {
         return { single_post };
       })
       .catch(error => console.error(error));
-  },
-  components: {
-    AppAdminPostForm
   },
   methods: {
     handleFormSubmission(edited_post) {

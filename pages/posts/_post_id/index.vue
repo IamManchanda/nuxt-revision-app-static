@@ -18,12 +18,8 @@
 
 <script>
 import axios from "axios";
-import AppPost from "~/components/posts/app-post.vue";
 
 export default {
-  components: {
-    AppPost
-  },
   asyncData(context) {
     return axios
       .get(

@@ -7,7 +7,6 @@
 
 <script>
 import axios from "axios";
-import AppAdminPostForm from "~/components/admin/app-admin-post-form.vue";
 import single_post from "~/fixtures/single_post.js";
 
 export default {
@@ -15,9 +14,6 @@ export default {
     return {
       single_post
     };
-  },
-  components: {
-    AppAdminPostForm
   },
   methods: {
     handleFormSubmission(added_post) {
