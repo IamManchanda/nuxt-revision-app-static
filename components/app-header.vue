@@ -10,9 +10,9 @@
       <nuxt-link :to="{ name: 'admin' }" tag="li" active-class="is-active">
         <a>Your Posts</a>
       </nuxt-link>
-      <nuxt-link :to="{ name: 'about' }" tag="li" active-class="is-active">
+      <!-- <nuxt-link :to="{ name: 'about' }" tag="li" active-class="is-active">
         <a>About</a>
-      </nuxt-link>
+      </nuxt-link> -->
     </ul>
   </div>
 </template>

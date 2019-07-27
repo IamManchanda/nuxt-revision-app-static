@@ -34,6 +34,11 @@ export default {
       })
       .catch(error => console.error(error));
   },
+  head() {
+    return {
+      title: this.single_post.title
+    };
+  },
   validate(route) {
     return /^-.+$/.test(route.params.post_id);
   },

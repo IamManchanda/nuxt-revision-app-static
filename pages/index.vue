@@ -32,6 +32,11 @@ export default {
       return this.$store.getters.all_posts;
     },
   },
+  head() {
+    return {
+      title: "Get the Latest Tech News"
+    };
+  },
 };
 </script>
 

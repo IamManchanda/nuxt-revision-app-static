@@ -26,7 +26,12 @@ export default {
         .then(() => this.$router.push({ name: "admin" }))
         .catch(error => console.error(error));
     }
-  }
+  },
+  head() {
+    return {
+      title: "Create New Post",
+    };
+  },
 };
 </script>
 

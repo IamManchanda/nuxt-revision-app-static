@@ -26,7 +26,12 @@ export default {
   computed: {
     all_posts() {
       return this.$store.getters.all_posts;
-    },
+    }
+  },
+  head() {
+    return {
+      title: "List of all Posts"
+    };
   },
 };
 </script>

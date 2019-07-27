@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <h1 class="is-size-3">Update Post</h1>
+    <h1 class="is-size-3">Update Post: {{ single_post.title }}</h1>
     <app-admin-post-form :edited_post="single_post" @submit="handleFormSubmission" />
   </div>
 </template>
@@ -31,6 +31,11 @@ export default {
         .then(() => this.$router.push({ name: "admin" }))
         .catch(error => console.error(error));
     }
+  },
+  head() {
+    return {
+      title: `Update Post: ${this.single_post.title}`,
+    };
   },
   validate(route) {
     return /^-.+$/.test(route.params.post_id);
