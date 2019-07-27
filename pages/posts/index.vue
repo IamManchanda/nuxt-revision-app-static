@@ -4,24 +4,25 @@
     <p>Fetched {{ all_posts.length }} results</p>
     <section class="columns is-multiline all-posts-container">
       <div class="column is-full" v-for="single_post of all_posts" :key="single_post.post_id">
-        <app-post-excerpt
+        <app-post
+          type="excerpt"
           :post_id="single_post.post_id"
           :title="single_post.title"
           :author="single_post.author"
         >
           <div v-html="single_post.excerpt"></div>
-        </app-post-excerpt>
+        </app-post>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import AppPostExcerpt from "~/components/posts/app-post-excerpt.vue";
+import AppPost from "~/components/posts/app-post.vue";
 
 export default {
   components: {
-    AppPostExcerpt
+    AppPost
   },
   computed: {
     all_posts() {

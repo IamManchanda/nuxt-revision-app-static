@@ -3,13 +3,14 @@
     <h1 class="is-size-3">{{ single_post.title }}</h1>
     <section class="columns is-multiline single-post-container">
       <div class="column is-full">
-        <app-post-content
+        <app-post
+          type="content"
           :post_id="single_post.post_id"
           :title="single_post.title"
           :author="single_post.author"
         >
           <div v-html="single_post.content"></div>
-        </app-post-content>
+        </app-post>
       </div>
     </section>
   </div>
@@ -17,11 +18,11 @@
 
 <script>
 import axios from "axios";
-import AppPostContent from "~/components/posts/app-post-content.vue";
+import AppPost from "~/components/posts/app-post.vue";
 
 export default {
   components: {
-    AppPostContent
+    AppPost
   },
   asyncData(context) {
     return axios

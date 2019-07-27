@@ -7,25 +7,26 @@
         v-for="single_post of all_posts"
         :key="single_post.post_id"
       >
-        <app-post-preview
+        <app-post
+          type="preview"
           :post_id="single_post.post_id"
           :title="single_post.title"
           :author="single_post.author"
           :is_admin="true"
         >
           <div v-html="single_post.preview"></div>
-        </app-post-preview>
+        </app-post>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import AppPostPreview from "~/components/posts/app-post-preview.vue";
+import AppPost from "~/components/posts/app-post.vue";
 
 export default {
   components: {
-    AppPostPreview
+    AppPost
   },
   computed: {
     all_posts() {
