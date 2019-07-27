@@ -5,14 +5,14 @@
       <nuxt-link type="button" class="button is-primary" :to="{ name: 'admin-new-post'}">Create Post</nuxt-link>
     </div>
     <section class="columns is-multiline all-posts-container">
-      <div class="column is-full" v-for="post_id of 6" :key="post_id">
+      <div class="column is-full" v-for="single_post of all_posts" :key="single_post.post_id">
         <app-post-excerpt
-          :post_id="post_id"
-          :title="single_post_dummy_data.title"
-          :author="single_post_dummy_data.author"
+          :post_id="single_post.post_id"
+          :title="single_post.title"
+          :author="single_post.author"
           :is_admin="true"
         >
-          <div v-html="single_post_dummy_data.excerpt"></div>
+          <div v-html="single_post.excerpt"></div>
         </app-post-excerpt>
       </div>
     </section>
@@ -21,29 +21,16 @@
 
 <script>
 import AppPostExcerpt from "~/components/posts/app-post-excerpt.vue";
-import { single_post_dummy_data } from "~/fixtures/single_post.js";
 
 export default {
   components: {
     AppPostExcerpt
   },
-  asyncData(context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({ single_post_dummy_data });
-      }, 100);
-    })
-      .then(data => data)
-      .catch(error => {
-        console.error(error);
-        context.error(new Error());
-      });
-  },
-  /* computed: {
+  computed: {
     all_posts() {
       return this.$store.getters.all_posts;
     },
-  }, */
+  },
 };
 </script>
 

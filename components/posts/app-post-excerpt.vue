@@ -9,7 +9,7 @@
           <div class="column is-full-mobile is-half-tablet is-one-quarter-desktop">
             <figure class="image">
               <img
-                :src="`https://source.unsplash.com/collection/${post_id}/450x650`"
+                :src="`https://source.unsplash.com/collection/${post_id}/450x750`"
                 alt="Placeholder image"
               />
             </figure>

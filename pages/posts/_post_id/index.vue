@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h1 class="is-size-3">Post #{{ $route.params.post_id }}</h1>
+    <h1 class="is-size-3">{{ single_post.title }}</h1>
     <section class="columns is-multiline single-post-container">
       <div class="column is-full">
         <app-post-content
-          :post_id="$route.params.post_id"
-          :title="single_post_dummy_data.title"
-          :author="single_post_dummy_data.author"
+          :post_id="single_post.post_id"
+          :title="single_post.title"
+          :author="single_post.author"
         >
-          <div v-html="single_post_dummy_data.content"></div>
+          <div v-html="single_post.content"></div>
         </app-post-content>
       </div>
     </section>
@@ -16,28 +16,27 @@
 </template>
 
 <script>
+import axios from "axios";
 import AppPostContent from "~/components/posts/app-post-content.vue";
-import { single_post_dummy_data } from "~/fixtures/single_post.js";
 
 export default {
   components: {
     AppPostContent
   },
   asyncData(context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({ single_post_dummy_data });
-      }, 100);
-    })
-      .then(data => data)
-      .catch(error => {
-        console.error(error);
-        context.error(new Error());
-      });
+    return axios
+      .get(
+        `https://nuxt-revision-app.firebaseio.com/posts/${context.params.post_id}.json`
+      )
+      .then(({ data }) => {
+        const single_post = { post_id: context.params.post_id, ...data };
+        return { single_post };
+      })
+      .catch(error => console.error(error));
   },
   validate(route) {
-    return /^\d+$/.test(route.params.post_id);
-  }
+    return /^-.+$/.test(route.params.post_id);
+  },
 };
 </script>
 

@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     handleSavePost() {
-      console.log(this.edited_post);
+      this.$emit("submit" ,this.edited_post);
     },
     handleCancelPost() {
       this.$router.push("/admin");
