@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import single_post from "~/fixtures/single_post";
 
 export default {

@@ -33,8 +33,12 @@ export default {
    */
   modules: [
     // Doc: https://buefy.github.io/#/documentation
-    "nuxt-buefy"
+    "nuxt-buefy",
+    "@nuxtjs/axios"
   ],
+  axios: {
+    baseURL: "https://nuxt-revision-app.firebaseio.com",
+  },
   /*
    ** Build configuration
    */
@@ -46,6 +50,6 @@ export default {
   },
   transition: {
     name: "fade",
-    mode: "out-in",
-  },
+    mode: "out-in"
+  }
 };

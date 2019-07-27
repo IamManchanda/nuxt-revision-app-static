@@ -1,5 +1,4 @@
 import Vuex from "vuex";
-import axios from "axios";
 
 const createStore = () => {
   return new Vuex.Store({
@@ -21,10 +20,10 @@ const createStore = () => {
       }
     },
     actions: {
-      nuxtServerInit({ commit }) {
-        return axios
-          .get("https://nuxt-revision-app.firebaseio.com/posts.json")
-          .then(({ data }) => {
+      nuxtServerInit({ commit }, { app }) {
+        return app.$axios
+          .$get("/posts.json")
+          .then(data => {
             const postsArray = [];
             for (const key in data) {
               if (data.hasOwnProperty(key)) {
@@ -40,26 +39,18 @@ const createStore = () => {
         commit("setPosts", all_posts);
       },
       addPost({ commit }, added_post) {
-        return axios
-          .post(
-            "https://nuxt-revision-app.firebaseio.com/posts.json",
-            added_post
-          )
-          .then(response => {
-            const post_id = response.data.name;
+        return this.$axios
+          .$post("/posts.json", added_post)
+          .then(data => {
+            const post_id = data.name;
             commit("addPost", { post_id, ...added_post });
           })
           .catch(error => console.error(error));
       },
       editPost({ commit }, edited_post) {
-        return axios
-          .put(
-            `https://nuxt-revision-app.firebaseio.com/posts/${
-              edited_post.post_id
-            }.json`,
-            edited_post
-          )
-          .then(response => {
+        return this.$axios
+          .$put(`/posts/${edited_post.post_id}.json`, edited_post)
+          .then(data => {
             commit("editPost", edited_post);
           })
           .catch(error => console.error(error));

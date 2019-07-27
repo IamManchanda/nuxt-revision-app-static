@@ -17,15 +17,11 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   asyncData(context) {
-    return axios
-      .get(
-        `https://nuxt-revision-app.firebaseio.com/posts/${context.params.post_id}.json`
-      )
-      .then(({ data }) => {
+    return context.app.$axios
+      .$get(`/posts/${context.params.post_id}.json`)
+      .then(data => {
         const single_post = { post_id: context.params.post_id, ...data };
         return { single_post };
       })
@@ -38,7 +34,7 @@ export default {
   },
   validate(route) {
     return /^-.+$/.test(route.params.post_id);
-  },
+  }
 };
 </script>
 
