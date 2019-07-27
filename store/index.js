@@ -20,40 +20,40 @@ const createStore = () => {
       }
     },
     actions: {
-      nuxtServerInit({ commit }, { app }) {
-        return app.$axios
-          .$get("/posts.json")
-          .then(data => {
-            const postsArray = [];
-            for (const key in data) {
-              if (data.hasOwnProperty(key)) {
-                const [post_id, item] = [key, data[key]];
-                postsArray.push({ post_id, ...item });
-              }
+      nuxtServerInit: async function ({ commit }, { app }) {
+        try {
+          const data = await app.$axios.$get("/posts.json");
+          const postsArray = [];
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              const [post_id, item] = [key, data[key]];
+              postsArray.push({ post_id, ...item });
             }
-            commit("setPosts", postsArray);
-          })
-          .catch(error => console.error(error));
+          }
+          commit("setPosts", postsArray);
+        } catch (error) {
+          console.error(error);
+        }
       },
       setPosts({ commit }, all_posts) {
         commit("setPosts", all_posts);
       },
-      addPost({ commit }, added_post) {
-        return this.$axios
-          .$post("/posts.json", added_post)
-          .then(data => {
-            const post_id = data.name;
-            commit("addPost", { post_id, ...added_post });
-          })
-          .catch(error => console.error(error));
+      addPost: async function ({ commit }, added_post) {
+        try {
+          const data = this.$axios.$post("/posts.json", added_post);
+          const post_id = data.name;
+          commit("addPost", { post_id, ...added_post });
+        } catch (error) {
+          console.error(error);
+        }
       },
-      editPost({ commit }, edited_post) {
-        return this.$axios
-          .$put(`/posts/${edited_post.post_id}.json`, edited_post)
-          .then(data => {
-            commit("editPost", edited_post);
-          })
-          .catch(error => console.error(error));
+      editPost: async function ({ commit }, edited_post) {
+        try {
+          await this.$axios.$put(`/posts/${edited_post.post_id}.json`, edited_post);
+          commit("editPost", edited_post);
+        } catch (error) {
+          console.error(error);
+        }
       }
     },
     getters: {

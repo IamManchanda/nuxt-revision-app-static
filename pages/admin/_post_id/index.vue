@@ -7,14 +7,16 @@
 
 <script>
 export default {
-  asyncData(context) {
-    return context.app.$axios
-      .$get(`/posts/${context.params.post_id}.json`)
-      .then(data => {
-        const single_post = { post_id: context.params.post_id, ...data };
-        return { single_post };
-      })
-      .catch(error => console.error(error));
+  async asyncData(context) {
+    try {
+      const data = await context.app.$axios.$get(
+        `/posts/${context.params.post_id}.json`
+      );
+      const single_post = { post_id: context.params.post_id, ...data };
+      return { single_post };
+    } catch (error) {
+      console.error(error);
+    }
   },
   methods: {
     handleFormSubmission(edited_post) {
