@@ -7,7 +7,7 @@
 
 <script>
 import axios from "axios";
-import single_post from "~/fixtures/single_post.js";
+import single_post from "~/fixtures/single_post";
 
 export default {
   data() {
