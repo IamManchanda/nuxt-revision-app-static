@@ -10,6 +10,8 @@ import axios from "axios";
 import AppAdminPostForm from "~/components/admin/app-admin-post-form.vue";
 import single_post from "~/fixtures/single_post.js";
 
+const emptySinglePost = { ...single_post };
+
 export default {
   data() {
     return {
@@ -23,7 +25,11 @@ export default {
     handleFormSubmission(data) {
       axios
         .post("https://nuxt-revision-app.firebaseio.com/posts.json", data)
-        .then(result => console.log(result))
+        .then(response => {
+          console.log(response);
+          this.single_post = emptySinglePost;
+          this.$router.push({ name: "admin" });
+        })
         .catch(error => console.error(error));
     }
   }

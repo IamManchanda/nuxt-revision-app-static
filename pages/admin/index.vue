@@ -4,6 +4,7 @@
       <h1 class="is-size-3">Existing Posts</h1>
       <nuxt-link type="button" class="button is-primary" :to="{ name: 'admin-new-post'}">Create Post</nuxt-link>
     </div>
+    <p>Fetched {{ all_posts.length }} results</p>
     <section class="columns is-multiline all-posts-container">
       <div class="column is-full" v-for="single_post of all_posts" :key="single_post.post_id">
         <app-post-excerpt

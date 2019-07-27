@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="is-size-3">List of all Posts.</h1>
+    <p>Fetched {{ all_posts.length }} results</p>
     <section class="columns is-multiline all-posts-container">
       <div class="column is-full" v-for="single_post of all_posts" :key="single_post.post_id">
         <app-post-excerpt
