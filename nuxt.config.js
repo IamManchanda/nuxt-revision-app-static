@@ -38,6 +38,7 @@ export default {
   ],
   axios: {
     baseURL: "https://nuxt-revision-app.firebaseio.com",
+    credentials: false,
   },
   /*
    ** Build configuration
