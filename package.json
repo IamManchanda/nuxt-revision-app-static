@@ -1,7 +1,7 @@
 {
   "name": "nuxt-revision-app",
   "version": "1.0.0",
-  "description": "My wicked Nuxt.js project",
+  "description": "My Full-stack Nuxt.js project backed by Firebase Backend.",
   "author": "Harry Manchanda",
   "private": true,
   "scripts": {

@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <h1 class="is-size-3">Update Post</h1>
-    <app-admin-post-form :edited_post="single_post" />
+    <app-admin-post-form :edited_post="single_post" @submit="handleFormSubmission" />
   </div>
 </template>
 
@@ -24,9 +24,17 @@ export default {
   components: {
     AppAdminPostForm
   },
+  methods: {
+    handleFormSubmission(edited_post) {
+      this.$store
+        .dispatch("editPost", edited_post)
+        .then(() => this.$router.push({ name: "admin" }))
+        .catch(error => console.error(error));
+    }
+  },
   validate(route) {
     return /^-.+$/.test(route.params.post_id);
-  },
+  }
 };
 </script>
 
