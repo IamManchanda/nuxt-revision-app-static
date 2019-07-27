@@ -49,7 +49,7 @@ export default {
      */
     extend(config, ctx) {}
   },
-  transition: {
+  pageTransition: {
     name: "fade",
     mode: "out-in"
   }
