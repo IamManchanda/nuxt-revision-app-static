@@ -68,7 +68,7 @@ export const actions = {
       console.error(error);
     }
   },
-  async authenticateUser({ commit, dispatch }, authData) {
+  async authenticateUser({ commit }, authData) {
     const authType =
       authData.label === "Sign up"
         ? "signUp"
@@ -96,7 +96,7 @@ export const actions = {
       }
     }
   },
-  initAuth({ commit, dispatch }, request) {
+  initAuth({ commit }, request) {
     let token;
     let expirationDate;
     if (request) {
