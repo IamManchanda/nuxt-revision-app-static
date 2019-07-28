@@ -84,23 +84,17 @@ export const actions = {
           ...authData.user_log_details,
           returnSecureToken: true
         });
-        const expiresInMs = data.expiresIn * 1000;
+        const expiresInMs = Number(data.expiresIn) * 1000;
         const expirationDate = new Date().getTime() + expiresInMs;
         commit("setToken", data.idToken);
         localStorage.setItem("token", data.idToken);
         localStorage.setItem("tokenExpiration", expirationDate);
         Cookie.set("jwt", data.idToken);
         Cookie.set("expirationDate", expirationDate);
-        dispatch("setLogoutTimer", expiresInMs);
       } catch (error) {
         console.error(error);
       }
     }
-  },
-  setLogoutTimer({ commit }, duration) {
-    setTimeout(() => {
-      commit("clearToken");
-    }, duration);
   },
   initAuth({ commit, dispatch }, request) {
     let token;
@@ -119,11 +113,11 @@ export const actions = {
     } else {
       token = localStorage.getItem("token");
       expirationDate = localStorage.getItem("tokenExpiration");
-      if (new Date().getTime() > Number(expirationDate) || !token) {
-        return undefined;
-      }
     }
-    dispatch("setLogoutTimer", Number(expirationDate) - new Date().getTime());
+    if (new Date().getTime() > Number(expirationDate) || !token) {
+      commit("clearToken");
+      return undefined;
+    }
     commit("setToken", token);
   }
 };
