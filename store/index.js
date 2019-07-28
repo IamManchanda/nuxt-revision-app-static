@@ -47,7 +47,7 @@ export const actions = {
   },
   async addPost({ commit, state: currentState }, added_post) {
     try {
-      const data = this.$axios.$post(
+      const data = await this.$axios.$post(
         `/posts.json?auth=${currentState.token}`,
         added_post
       );
