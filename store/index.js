@@ -1,5 +1,6 @@
 export const state = () => ({
-  all_posts: []
+  all_posts: [],
+  token: null,
 });
 
 export const mutations = {
@@ -14,6 +15,9 @@ export const mutations = {
       single_post => (single_post.post_id = edited_post.post_id)
     );
     currentState.all_posts[postIndex] = edited_post;
+  },
+  setToken(currentState, token) {
+    currentState.token = token;
   }
 };
 
@@ -51,6 +55,26 @@ export const actions = {
       commit("editPost", edited_post);
     } catch (error) {
       console.error(error);
+    }
+  },
+  async authenticateUser({ commit }, authData) {
+    const authType =
+      authData.label === "Sign up"
+        ? "signUp"
+        : authData.label === "Log in"
+        ? "signInWithPassword"
+        : "";
+    if (authType) {
+      const authUrl = `https://identitytoolkit.googleapis.com/v1/accounts:${authType}?key=${process.env.firebaseApiKey}`;
+      try {
+        const data = await this.$axios.$post(authUrl, {
+          ...authData.user_log_details,
+          returnSecureToken: true
+        });
+        commit("setToken", data.idToken);
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 };

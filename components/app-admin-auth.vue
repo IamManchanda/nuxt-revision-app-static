@@ -28,37 +28,23 @@
 <script>
 export default {
   props: {
-    user_log_details: {
-      type: Object,
-      required: true
-    },
     label: {
       type: String,
+      required: true
+    },
+    user_log_details: {
+      type: Object,
       required: true
     }
   },
   methods: {
-    async handleSaveAuth() {
-      const authType =
-        this.label === "Sign up"
-          ? "signUp"
-          : this.label === "Log in"
-          ? "signInWithPassword"
-          : "";
-      if (authType) {
-        const authUrl = `https://identitytoolkit.googleapis.com/v1/accounts:${authType}?key=${process.env.firebaseApiKey}`;
-        console.log(authUrl);
-        try {
-          const data = await this.$axios.$post(authUrl, {
-            ...this.user_log_details,
-            returnSecureToken: true
-          });
-          console.log(data);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    },
+    handleSaveAuth() {
+      const { label, user_log_details } = this;
+      this.$store
+        .dispatch("authenticateUser", { label, user_log_details })
+        .then(() => this.$router.push({ name: "admin" }))
+        .catch(error => console.error(error));
+    }
   }
 };
 </script>
