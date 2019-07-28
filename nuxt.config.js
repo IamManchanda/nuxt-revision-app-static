@@ -1,3 +1,7 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
 export default {
   mode: "universal",
   /*
@@ -34,11 +38,12 @@ export default {
   modules: [
     // Doc: https://buefy.github.io/#/documentation
     "nuxt-buefy",
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    "@nuxtjs/dotenv"
   ],
   axios: {
-    baseURL: "https://nuxt-revision-app.firebaseio.com",
-    credentials: false,
+    baseURL: process.env.FIREBASE_API_URL,
+    credentials: false
   },
   /*
    ** Build configuration
@@ -54,6 +59,6 @@ export default {
     mode: "out-in"
   },
   env: {
-    firebaseApiKey: "AIzaSyD1S1DGNFmXf91veR0G_OK7zpZ-Mo5Y_vE",
-  },
+    firebaseApiKey: process.env.FIREBASE_API_KEY
+  }
 };
