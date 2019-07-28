@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="is-size-4">{{ label }} to your Account</h1>
-    <form class="form-container" @submit.prevent="handleAuth">
+    <form class="form-container" @submit.prevent="handleSaveAuth">
       <b-field label="Email Address">
         <b-input
           type="email"
@@ -21,6 +21,7 @@
       </b-field>
       <div class="action-container">
         <button type="submit" class="button is-primary">{{ label }}</button>
+        <button @click="handleCancelAuth" class="button is-default">Cancel</button>
       </div>
     </form>
   </div>
@@ -38,19 +39,29 @@ export default {
     }
   },
   methods: {
-    async handleAuth() {
-      try {
-        const data = await this.$axios.$post(
-          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.firebaseApiKey}`,
-          {
+    async handleSaveAuth() {
+      const authType =
+        this.label === "Sign up"
+          ? "signUp"
+          : this.label === "Log in"
+          ? "signInWithPassword"
+          : "";
+      if (authType) {
+        const authUrl = `https://identitytoolkit.googleapis.com/v1/accounts:${authType}?key=${process.env.firebaseApiKey}`;
+        console.log(authUrl);
+        try {
+          const data = await this.$axios.$post(authUrl, {
             ...this.user_log_details,
             returnSecureToken: true
-          }
-        );
-        console.log(data);
-      } catch (error) {
-        console.error(error);
+          });
+          console.log(data);
+        } catch (error) {
+          console.error(error);
+        }
       }
+    },
+    handleCancelAuth() {
+      this.$router.push("/");
     }
   }
 };
