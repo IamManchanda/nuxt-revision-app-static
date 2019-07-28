@@ -1,3 +1,5 @@
+import Cookie from "js-cookie";
+
 export const state = () => ({
   all_posts: [],
   token: null
@@ -82,13 +84,14 @@ export const actions = {
           ...authData.user_log_details,
           returnSecureToken: true
         });
+        const expiresInMs = data.expiresIn * 1000;
+        const expirationDate = new Date().getTime() + expiresInMs;
         commit("setToken", data.idToken);
         localStorage.setItem("token", data.idToken);
-        localStorage.setItem(
-          "tokenExpiration",
-          new Date().getTime() + data.expiresIn * 1000
-        );
-        dispatch("setLogoutTimer", data.expiresIn * 1000);
+        localStorage.setItem("tokenExpiration", expirationDate);
+        Cookie.set("jwt", data.idToken);
+        Cookie.set("expirationDate", expirationDate);
+        dispatch("setLogoutTimer", expiresInMs);
       } catch (error) {
         console.error(error);
       }
@@ -99,12 +102,29 @@ export const actions = {
       commit("clearToken");
     }, duration);
   },
-  initAuth({ commit, dispatch }) {
-    const token = localStorage.getItem("token");
-    const expirationDate = localStorage.getItem("tokenExpiration");
-    if (new Date().getTime() > Number(expirationDate) || !token) return undefined;
+  initAuth({ commit, dispatch }, request) {
+    let token;
+    let expirationDate;
+    if (request) {
+      if (!request.headers.cookie) return undefined;
+      const jwtCookie = request.headers.cookie
+        .split(";")
+        .find(c => c.trim().startsWith("jwt="));
+      if (!jwtCookie) return undefined;
+      token = jwtCookie.split("=")[1];
+      expirationDate = request.headers.cookie
+        .split(";")
+        .find(c => c.trim().startsWith("expirationDate="))
+        .split("=")[1];
+    } else {
+      token = localStorage.getItem("token");
+      expirationDate = localStorage.getItem("tokenExpiration");
+      if (new Date().getTime() > Number(expirationDate) || !token) {
+        return undefined;
+      }
+    }
     dispatch("setLogoutTimer", Number(expirationDate) - new Date().getTime());
-    commit("setToken", token)
+    commit("setToken", token);
   }
 };
 
