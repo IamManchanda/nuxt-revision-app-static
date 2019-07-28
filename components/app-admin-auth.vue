@@ -21,6 +21,7 @@
       </b-field>
       <div class="action-container">
         <button type="submit" class="button is-primary">{{ label }}</button>
+        <button type="button"  @click="handleCancelPost" class="button is-default">Cancel</button>
       </div>
     </form>
   </div>
@@ -49,6 +50,9 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    handleCancelPost() {
+      this.$router.push("/");
     }
   }
 };
