@@ -1,6 +1,6 @@
 export const state = () => ({
   all_posts: [],
-  token: null,
+  token: null
 });
 
 export const mutations = {
@@ -40,18 +40,24 @@ export const actions = {
   setPosts({ commit }, all_posts) {
     commit("setPosts", all_posts);
   },
-  async addPost({ commit }, added_post) {
+  async addPost({ commit, state: currentState }, added_post) {
     try {
-      const data = this.$axios.$post("/posts.json", added_post);
+      const data = this.$axios.$post(
+        `/posts.json?auth=${currentState.token}`,
+        added_post
+      );
       const post_id = data.name;
       commit("addPost", { post_id, ...added_post });
     } catch (error) {
       console.error(error);
     }
   },
-  async editPost({ commit }, edited_post) {
+  async editPost({ commit, state: currentState }, edited_post) {
     try {
-      await this.$axios.$put(`/posts/${edited_post.post_id}.json`, edited_post);
+      await this.$axios.$put(
+        `/posts/${edited_post.post_id}.json?auth=${currentState.token}`,
+        edited_post
+      );
       commit("editPost", edited_post);
     } catch (error) {
       console.error(error);
@@ -65,7 +71,9 @@ export const actions = {
         ? "signInWithPassword"
         : "";
     if (authType) {
-      const authUrl = `https://identitytoolkit.googleapis.com/v1/accounts:${authType}?key=${process.env.firebaseApiKey}`;
+      const authUrl = `https://identitytoolkit.googleapis.com/v1/accounts:${authType}?key=${
+        process.env.firebaseApiKey
+      }`;
       try {
         const data = await this.$axios.$post(authUrl, {
           ...authData.user_log_details,
