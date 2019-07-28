@@ -96,7 +96,7 @@ export const actions = {
       }
     }
   },
-  initAuth({ commit }, request) {
+  initAuth({ commit, dispatch }, request) {
     let token;
     let expirationDate;
     if (request) {
@@ -115,10 +115,17 @@ export const actions = {
       expirationDate = localStorage.getItem("tokenExpiration");
     }
     if (new Date().getTime() > Number(expirationDate) || !token) {
-      commit("clearToken");
+      dispatch("logout");
       return undefined;
     }
     commit("setToken", token);
+  },
+  logout({ commit }) {
+    commit("clearToken");
+    Cookie.remove("jwt");
+    Cookie.remove("expirationDate");
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenExpiration");
   }
 };
 
