@@ -15,11 +15,13 @@ export default {
     };
   },
   methods: {
-    handleFormSubmission(added_post) {
-      this.$store
-        .dispatch("addPost", added_post)
-        .then(() => this.$router.push({ name: "admin" }))
-        .catch(error => console.error(error));
+    async handleFormSubmission(added_post) {
+      try {
+        await this.$store.dispatch("addPost", added_post);
+        this.$router.push({ name: "admin" });
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
   head() {

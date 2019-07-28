@@ -19,11 +19,13 @@ export default {
     }
   },
   methods: {
-    handleFormSubmission(edited_post) {
-      this.$store
-        .dispatch("editPost", edited_post)
-        .then(() => this.$router.push({ name: "admin" }))
-        .catch(error => console.error(error));
+    async handleFormSubmission(edited_post) {
+      try {
+        await this.$store.dispatch("editPost", edited_post);
+        this.$router.push({ name: "admin" });
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
   head() {

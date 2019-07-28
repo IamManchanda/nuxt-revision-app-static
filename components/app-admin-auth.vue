@@ -38,12 +38,17 @@ export default {
     }
   },
   methods: {
-    handleSaveAuth() {
+    async handleSaveAuth() {
       const { label, user_log_details } = this;
-      this.$store
-        .dispatch("authenticateUser", { label, user_log_details })
-        .then(() => this.$router.push({ name: "admin" }))
-        .catch(error => console.error(error));
+      try {
+        await this.$store.dispatch("authenticateUser", {
+          label,
+          user_log_details
+        });
+        this.$router.push({ name: "admin" });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 };
