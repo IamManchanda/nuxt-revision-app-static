@@ -2,10 +2,10 @@
   <div class="box">
     <b-tabs v-model="auth_tab_type">
       <b-tab-item :label="signup_label">
-        <app-admin-auth :label="signup_label" :user_log_details="user_log_details"></app-admin-auth>
+        <app-admin-auth :label="signup_label" :user_log_details="user_log_details" />
       </b-tab-item>
       <b-tab-item :label="login_label">
-        <app-admin-auth :label="login_label" :user_log_details="user_log_details"></app-admin-auth>
+        <app-admin-auth :label="login_label" :user_log_details="user_log_details" />
       </b-tab-item>
     </b-tabs>
   </div>
