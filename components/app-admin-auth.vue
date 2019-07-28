@@ -21,7 +21,6 @@
       </b-field>
       <div class="action-container">
         <button type="submit" class="button is-primary">{{ label }}</button>
-        <button @click="handleCancelAuth" class="button is-default">Cancel</button>
       </div>
     </form>
   </div>
@@ -60,9 +59,6 @@ export default {
         }
       }
     },
-    handleCancelAuth() {
-      this.$router.push("/");
-    }
   }
 };
 </script>

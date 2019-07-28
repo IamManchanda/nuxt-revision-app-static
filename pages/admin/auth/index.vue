@@ -7,6 +7,10 @@
       <b-tab-item :label="login_label">
         <app-admin-auth :label="login_label" :user_log_details="user_log_details" />
       </b-tab-item>
+       <b-tab-item :label="back_to_homepage_label">
+         <h1 class="is-size-4">Redirecting you {{ back_to_homepage_label }}</h1>
+         <p>Good Bye ✋</p>
+       </b-tab-item>
     </b-tabs>
   </div>
 </template>
@@ -24,18 +28,31 @@ export default {
       auth_tab_type: 0,
       signup_label: "Sign up",
       login_label: "Log in",
+      back_to_homepage_label: "Back to Homepage",
     };
   },
   computed: {
     auth_seo_title() {
       if (this.auth_tab_type === 0) {
-        return "Sign up to your Account";
+        return `${this.signup_label} to your Account`;
       }
       if (this.auth_tab_type === 1) {
-        return "Log in to your Account";
+        return `${this.login_label} to your Account`;
+      }
+      if (this.auth_tab_type === 2) {
+        return `Redirecting you ${this.back_to_homepage_label}`;
       }
       return "Your Account";
     }
+  },
+  watch: {
+    auth_tab_type() {
+      if (this.auth_tab_type === 2) {
+        setTimeout(() => {
+          this.$router.push("/");
+        }, 1000);
+      }
+    },
   },
   head() {
     return {
