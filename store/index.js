@@ -18,6 +18,9 @@ export const mutations = {
   },
   setToken(currentState, token) {
     currentState.token = token;
+  },
+  clearToken(currentState) {
+    currentState.token = null;
   }
 };
 
@@ -63,7 +66,7 @@ export const actions = {
       console.error(error);
     }
   },
-  async authenticateUser({ commit }, authData) {
+  async authenticateUser({ commit, dispatch }, authData) {
     const authType =
       authData.label === "Sign up"
         ? "signUp"
@@ -80,10 +83,16 @@ export const actions = {
           returnSecureToken: true
         });
         commit("setToken", data.idToken);
+        dispatch("setLogoutTimer", data.expiresIn * 1000)
       } catch (error) {
         console.error(error);
       }
     }
+  },
+  setLogoutTimer({ commit }, duration) {
+    setTimeout(() => {
+      commit("clearToken");
+    }, duration);
   }
 };
 
