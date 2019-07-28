@@ -1,6 +1,6 @@
-# nuxt-revision-app
+# Nuxt Revision App (Blog with Authentication)
 
-> My wicked Nuxt.js project
+> My Full-stack Nuxt.js project backed by Firebase Backend
 
 ## Build Setup
 
