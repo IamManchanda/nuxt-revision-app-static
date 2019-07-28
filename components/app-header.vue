@@ -1,6 +1,11 @@
 <template>
   <div class="columns is-gapless">
-    <div class="column is-full-mobile is-two-thirds-tablet is-four-fifths-desktop">
+    <div
+      class="column"
+      :class="isAuthenticated
+        ? 'is-full-mobile is-two-thirds-tablet is-four-fifths-desktop'
+        : 'is-full'"
+    >
       <div class="tabs">
         <ul>
           <nuxt-link :to="{ name: 'index' }" tag="li" exact-active-class="is-active">
@@ -19,7 +24,10 @@
         </ul>
       </div>
     </div>
-    <div class="column is-hidden-mobile is-one-third-tablet is-one-fifth-desktop" v-if="isAuthenticated">
+    <div
+      class="column is-hidden-mobile is-one-third-tablet is-one-fifth-desktop"
+      v-if="isAuthenticated"
+    >
       <div class="tabs is-right">
         <ul>
           <li @click="handleLogout">
