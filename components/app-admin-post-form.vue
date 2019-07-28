@@ -31,8 +31,8 @@
       />
     </b-field>
     <div class="action-container">
-      <button @click="handleCancelPost" class="button is-default">Cancel</button>
       <button type="submit" class="button is-primary">Submit</button>
+      <button @click="handleCancelPost" class="button is-default">Cancel</button>
     </div>
   </form>
 </template>
@@ -55,18 +55,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.form-container {
-  margin-top: 1rem;
-}
-
-.action-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.action-container .button {
-  margin-left: 0.5rem;
-}
-</style>

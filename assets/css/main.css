@@ -3,9 +3,9 @@
 }
 
 .app-content {
-  margin-top: 1.5rem;
-  padding-left: .5rem;
-  padding-right: .5rem;
+  margin-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -31,4 +31,29 @@ p {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.form-container {
+  margin-top: 1rem;
+}
+
+.action-container {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
+
+.action-container .button {
+  margin-right: 0.5rem;
+}
+
+.auth-container {
+  display: flex;
+  height: 100vH;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }

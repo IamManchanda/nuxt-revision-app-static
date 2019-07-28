@@ -52,5 +52,8 @@ export default {
   pageTransition: {
     name: "fade",
     mode: "out-in"
-  }
+  },
+  env: {
+    firebaseApiKey: "AIzaSyD1S1DGNFmXf91veR0G_OK7zpZ-Mo5Y_vE",
+  },
 };

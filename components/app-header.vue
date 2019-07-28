@@ -8,7 +8,7 @@
         <a>All Posts</a>
       </nuxt-link>
       <nuxt-link :to="{ name: 'admin' }" tag="li" active-class="is-active">
-        <a>Your Posts</a>
+        <a>Your Account</a>
       </nuxt-link>
       <!-- <nuxt-link :to="{ name: 'about' }" tag="li" active-class="is-active">
         <a>About</a>
