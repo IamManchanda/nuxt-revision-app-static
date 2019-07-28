@@ -13,7 +13,7 @@
 import AppHeader from "~/components/app-header";
 
 export default {
-  middleware: "auth",
+  middleware: ["check-auth", "auth"],
   components: {
     AppHeader
   }

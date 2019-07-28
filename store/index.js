@@ -83,7 +83,12 @@ export const actions = {
           returnSecureToken: true
         });
         commit("setToken", data.idToken);
-        dispatch("setLogoutTimer", data.expiresIn * 1000)
+        localStorage.setItem("token", data.idToken);
+        localStorage.setItem(
+          "tokenExpiration",
+          new Date().getTime() + data.expiresIn * 1000
+        );
+        dispatch("setLogoutTimer", data.expiresIn * 1000);
       } catch (error) {
         console.error(error);
       }
@@ -93,6 +98,13 @@ export const actions = {
     setTimeout(() => {
       commit("clearToken");
     }, duration);
+  },
+  initAuth({ commit, dispatch }) {
+    const token = localStorage.getItem("token");
+    const expirationDate = localStorage.getItem("tokenExpiration");
+    if (new Date().getTime() > Number(expirationDate) || !token) return undefined;
+    dispatch("setLogoutTimer", Number(expirationDate) - new Date().getTime());
+    commit("setToken", token)
   }
 };
 
