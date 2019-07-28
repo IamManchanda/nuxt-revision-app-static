@@ -23,6 +23,7 @@
 
 <script>
 export default {
+  layout: "admin",
   computed: {
     all_posts() {
       return this.$store.getters.all_posts;

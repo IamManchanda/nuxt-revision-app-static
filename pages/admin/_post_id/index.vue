@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  layout: "admin",
   async asyncData(context) {
     try {
       const data = await context.app.$axios.$get(

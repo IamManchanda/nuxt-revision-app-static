@@ -90,5 +90,8 @@ export const actions = {
 export const getters = {
   all_posts(currentState) {
     return currentState.all_posts;
+  },
+  isAuthenticated(currentState) {
+    return currentState.token != null;
   }
 };

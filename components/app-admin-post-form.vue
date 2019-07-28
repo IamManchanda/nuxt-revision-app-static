@@ -50,7 +50,7 @@ export default {
       this.$emit("submit" ,this.edited_post);
     },
     handleCancelPost() {
-      this.$router.push("/admin");
+      this.$router.push({ name: "admin" });
     }
   }
 };

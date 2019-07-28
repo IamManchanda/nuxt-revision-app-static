@@ -9,6 +9,7 @@
 import single_post from "~/fixtures/single_post";
 
 export default {
+  layout: "admin",
   data() {
     return {
       single_post
