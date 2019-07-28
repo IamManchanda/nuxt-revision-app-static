@@ -19,6 +19,11 @@
 <script>
 export default {
   async asyncData(context) {
+    if (context.payload) {
+      return {
+        single_post: context.payload.postData,
+      };
+    }
     try {
       const data = await context.app.$axios.$get(
         `/posts/${context.params.post_id}.json`

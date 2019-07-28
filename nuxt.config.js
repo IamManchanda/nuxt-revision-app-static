@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import axios from "axios";
 
 dotenv.config();
 
@@ -60,5 +61,25 @@ export default {
   },
   env: {
     firebaseApiKey: process.env.FIREBASE_API_KEY
+  },
+  generate: {
+    async routes() {
+      const response = await axios.get(`${process.env.FIREBASE_API_URL}/posts.json`)
+      const routes = [];
+      for (const key in response.data) {
+        if (response.data.hasOwnProperty(key)) {
+          const postData = response.data[key];
+          routes.push({
+            route: `/posts/${key}`,
+            payload: { postData },
+          });
+          routes.push({
+            route: `/admin/${key}`,
+            payload: { postData },
+          });
+        }
+      }
+      return routes;
+    },
   }
 };
